@@ -1,0 +1,107 @@
+:root {
+    --primary-color: #333;
+    --secondary-color: #ddd;
+    --highlight-color: #555;
+    --text-color: #fff;
+    --cell-size: 100px;
+    --border-radius: 1rem;
+    --transition-speed: 0.3s;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--primary-color);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.gameboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: calc(var(--cell-size) * 3);
+    height: calc(var(--cell-size) * 3);
+    border: 2px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid var(--secondary-color);
+    background-color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.cell:hover {
+    background-color: var(--secondary-color);
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background-color: var(--highlight-color);
+}
+
+.active-player {
+    animation: blink 1s ease-in-out infinite alternate;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --cell-size: 80px;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
